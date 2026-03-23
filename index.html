@@ -412,6 +412,18 @@ function setLang(lang){
 function toggleFaq(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open');}
 const urlLang=new URLSearchParams(window.location.search).get('lang');
 if(urlLang&&['fr','de'].includes(urlLang)){document.querySelectorAll('[data-i18n]').forEach(el=>el.setAttribute('data-en',el.innerHTML));setLang(urlLang);}
+
+// Clarity Smart Event: Book Now click tracking
+document.addEventListener('click', function(e) {
+  const target = e.target.closest('a[href*="shop.indoorskydive.lu"], a.btn-pink, a.nav-cta, a[href*="contact"], a[href*="devis"]');
+  if (target) {
+    const lang = new URLSearchParams(window.location.search).get('lang') || 'en';
+    if (typeof clarity === 'function') {
+      clarity('event', 'book_now_click');
+      clarity('set', 'book_now_lang', lang);
+    }
+  }
+});
 </script>
 </body>
 </html>
