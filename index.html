@@ -433,15 +433,9 @@ document.addEventListener('click', function(e) {
     if (typeof clarity === 'function') {
       clarity('event', 'book_now_click');
       clarity('set', 'book_now_lang', lang);
-      // Meta Pixel — fire AddToCart and InitiateCheckout on Book Now click
-      // (signals purchase intent immediately, before user navigates to shop domain)
+      // Meta Pixel — fire InitiateCheckout on Book Now click
+      // (user is starting the checkout journey by navigating to the shop)
       if (typeof fbq !== 'undefined') {
-        fbq('track', 'AddToCart', {
-          content_name: 'Luxfly Indoor Skydiving',
-          content_category: 'Experience',
-          currency: 'EUR',
-          value: 64.90
-        });
         fbq('track', 'InitiateCheckout', {
           content_name: 'Luxfly Indoor Skydiving',
           currency: 'EUR',
